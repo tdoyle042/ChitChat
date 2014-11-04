@@ -8,7 +8,6 @@ var jade = require('jade');
 
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var chats = require('./routes/chats');
 
 var app = express();
