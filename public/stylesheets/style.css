@@ -22,6 +22,7 @@ a, a:visited{
 #home{
 	background: #00bbd6;
 	height: 100%;
+	overflow: hidden;
 }
 
 #title{

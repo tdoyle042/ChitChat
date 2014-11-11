@@ -3,7 +3,7 @@
 		<title>Social Web Final Project</title>
     	<link rel="icon" type="image/ico" href="logo.ico"/>
     	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700,400' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="stylesheets/style.css">
+		<link rel="stylesheet" href="../stylesheets/style.css">
     	<!--mobile--> <!-- <link rel="stylesheet" media="screen and (max-device-width: 1000px)" href="css/stylesheet.css"> -->
     	<!--not mobile--> <!--<link rel="stylesheet" media="screen and (min-device-width: 1001px)" href="css/notmobile.css"> -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -13,17 +13,19 @@
 	    <div id="new_chat">
 	    	<div id="title">New Chat Room</div>
 	    	
-	    	<form action="/new_chat" method="put" id="new_chat_form">
+	    	<form action="/new" method="put" id="new_chat_form">
 		    	<input name="new_chat_name" id="new_chat_name" type="text" placeholder="Chat Name"></input><br><br>
 		    	Set Time Limit in Minutes: <br>
 		    	10 <input name="new_chat_time" id="new_chat_time" type="range" min="10" max="60" value="35" data-popup-enabled="true" onchange="updateTime(value)"></input>60<br><output for=fader id="volume">35</output><br>
 		    	Set Radius in Miles: <br>
 		    	1<input name="new_chat_range" id="new_chat_range" type="range" min="1" max="5" value="3" data-popup-enabled="true" onchange="updateRange(value)"></input>5
+
+		    	<input id="new_chat_button"  type="submit" value="Create Chat Room"/>
 		    </form>
 
 	    </div>
 
-	    <div id="back"><a href="index.html">Cancel</a></div>
+	    <div id="back"><a href="/">Cancel</a></div>
 
 	    <div id="desktop">
 	    	GO AWAY
