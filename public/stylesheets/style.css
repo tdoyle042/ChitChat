@@ -5,6 +5,7 @@ contrast: #ffe600
 text: #2f3333
 
 darker: #0288D1
+medium: #039BE5
 lighter: #03A9F4
 contrast: 
 text: #2f3333
@@ -20,6 +21,11 @@ html{
 		font-size: 1em;
 	}
 }*/
+
+
+::-webkit-scrollbar { /* hide scrollbars but functional */
+    display: none; 
+}
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -120,7 +126,7 @@ a, a:visited{
 }
 
 .chat_time span{
-	font-size: 1.5rem;
+	font-size: 1rem;
 }
 
 /*@media(max-width: 980px) {
@@ -183,7 +189,8 @@ a, a:visited{
 
 #new_chat_form{
 	padding: 15%;
-
+	padding-top: 10%;
+	text-align: center;
 }
 
 input:focus{
@@ -191,14 +198,13 @@ input:focus{
 }
 
 #new_chat_form input{
-	margin-top: 20px;
-	margin-bottom: 20px;
+	/*margin-bottom: 20px;*/
 }
 
 #new_chat_name{ /*input field*/
 	background: none;
 	border-style: solid; 
-	border-width: 0px 0px 1px 0px; 
+	border-width: 0px 0px 2px 0px; 
 	border-color: #0288D1;
 	color: #2f3333;
 	font-size: 2rem;
@@ -207,21 +213,42 @@ input:focus{
 }
 
 #new_chat_name:focus{
-	border-width: 0px 0px 2px 0px;
+	border-width: 0px 0px 3px 0px;
 }
 
 input[type=range]{
 	-webkit-appearance: none;
-	background-color: #0288D1;
+	background-color: #039BE5;
 	width: 80%;
 	height: 2%;
 	border-radius: 4px;
+	margin-bottom: 5%;
 }
 
-#minutes{
+#minutes, #miles{
 	color: white;
-	font-size: 5rem;
+	font-size: 4rem;
 	font-weight: bold;
+	line-height: 4rem;
+}
+
+#range_title{
+	margin:0px;
+	padding: 0px;
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+#new_chat_button{
+	border: none;
+	color: white;
+	background: #0288D1;
+	font-size: 1em;
+	padding: 10px;
+	width: 180px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10%;
 }
 
 #back{

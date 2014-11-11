@@ -15,10 +15,14 @@
 	    	<div id="title">New Chat Room</div>
 	    	
 	    	<form action="/new" method="put" id="new_chat_form">
-		    	<input name="new_chat_name" id="new_chat_name" type="text" placeholder="Chat Name"></input><br><br>
-		    	Expires after <output for=fader id="minutes">35</output> minutes <br>
+		    	<input name="new_chat_name" id="new_chat_name" type="text" placeholder="Enter Chat Name"></input><br><br>
+		    	<div id="range_title">TIME LIMIT</div>
+		    	<output for=fader id="minutes">35</output><br>
+		    	minutes <br>
 		    	10 <input name="new_chat_time" id="new_chat_time" type="range" min="10" max="60" value="35" data-popup-enabled="true" onchange="updateTime(value)"></input>60<br><br>
-		    	Set Radius in Miles: <br>
+		    	<div id="range_title">RANGE</div>
+		    	<output for=fader id="miles">3</output><br>
+		    	miles <br>
 		    	1<input name="new_chat_range" id="new_chat_range" type="range" min="1" max="5" value="3" data-popup-enabled="true" onchange="updateRange(value)"></input>5
 
 		    	<input id="new_chat_button"  type="submit" value="Create Chat Room"/>
