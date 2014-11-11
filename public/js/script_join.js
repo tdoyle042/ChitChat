@@ -22,9 +22,9 @@ function formatChats(allChats){
 		message += "<a href='/chats/room/" + chat.id + "'><div class='chatroom'>"
 		message += "<div id='chat_data'>"
 		message += "<div class='chat_title'>" + chat.name + "</div>"
-		message += "<div class='chat_time'>EXPIRES IN <br><span>" + chat.time + "</span> <br>MINUTES</div>"
+		message += "<div class='chat_members'><span>" + chat.users + "</span><br> USERS</div>"
 		message += "</div>"
-		message += "<div class='chat_members'>" + chat.users + " users</div>"
+		message += "<div class='chat_time'><span>" + chat.time + "</span> minutes left</div>"
 		message += "</div></a>"
 	})
 	return message;
