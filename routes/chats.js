@@ -29,13 +29,19 @@ router.get('/all', function(req,res) {
 			name: "HCII Lounge",
 			time: 7,
 			users: 6
+		},
+		{
+			id: 4,
+			name: "Bagel Factory",
+			time: 8,
+			users: 9
 		}
 	]
 	res.send(fake_data);
 });
 
 //fake chatroom route for testing front-end
-router.get('/1', function(req, res){
+router.get('/room/:id', function(req, res){
 	res.sendFile("/chatroom1.html", {root:'./public/html'});
 })
 

@@ -6,8 +6,9 @@
 		<link rel="stylesheet" href="../stylesheets/style.css">
     	<!--mobile--> <!-- <link rel="stylesheet" media="screen and (max-device-width: 1000px)" href="css/stylesheet.css"> -->
     	<!--not mobile--> <!--<link rel="stylesheet" media="screen and (min-device-width: 1001px)" href="css/notmobile.css"> -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-   		<script src="js/script.js"></script>
+   		<script src="../js/script.js"></script>
 	</head>
 	<body>
 	    <div id="new_chat">
@@ -15,8 +16,8 @@
 	    	
 	    	<form action="/new" method="put" id="new_chat_form">
 		    	<input name="new_chat_name" id="new_chat_name" type="text" placeholder="Chat Name"></input><br><br>
-		    	Set Time Limit in Minutes: <br>
-		    	10 <input name="new_chat_time" id="new_chat_time" type="range" min="10" max="60" value="35" data-popup-enabled="true" onchange="updateTime(value)"></input>60<br><output for=fader id="volume">35</output><br>
+		    	Expires after <output for=fader id="minutes">35</output> minutes <br>
+		    	10 <input name="new_chat_time" id="new_chat_time" type="range" min="10" max="60" value="35" data-popup-enabled="true" onchange="updateTime(value)"></input>60<br><br>
 		    	Set Radius in Miles: <br>
 		    	1<input name="new_chat_range" id="new_chat_range" type="range" min="1" max="5" value="3" data-popup-enabled="true" onchange="updateRange(value)"></input>5
 

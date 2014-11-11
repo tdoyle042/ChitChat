@@ -19,10 +19,10 @@ function loadChats(){
 function formatChats(allChats){
 	message = "<div id='title'>Chat Rooms Near You</div>";
 	allChats.forEach(function(chat){
-		message += "<a href='/chats/" + chat.id + "'><div class='chatroom'>"
+		message += "<a href='/chats/room/" + chat.id + "'><div class='chatroom'>"
 		message += "<div id='chat_data'>"
 		message += "<div class='chat_title'>" + chat.name + "</div>"
-		message += "<div class='chat_time'>" + chat.time + " minutes left</div>"
+		message += "<div class='chat_time'>EXPIRES IN <br><span>" + chat.time + "</span> <br>MINUTES</div>"
 		message += "</div>"
 		message += "<div class='chat_members'>" + chat.users + " users</div>"
 		message += "</div></a>"
