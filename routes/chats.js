@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var appExports = require('../app');
 
 ////////// JOINING EXISTING CHAT //////////
 
@@ -55,6 +56,17 @@ router.put('/new', function(req,res) {
 		new_chat_range :Number in miles
 	*/
 	res.send();
+});
+
+router.get('/newTest', function(req,res) {
+	var app = appExports.app;
+	app.newChatRoom("test",Date.now(),1, function(err) {
+		if(!err) {
+			res.send("Successfully saved!");
+		} else {
+			res.send("Didn't save :(")
+		}
+	});
 });
 
 module.exports = router;

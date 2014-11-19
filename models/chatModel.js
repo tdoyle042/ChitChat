@@ -11,6 +11,7 @@ var chatModel = (function (mongoose) {
 		radius : Number
 	});
 	var ChatModel = mongoose.model('Chat', chatSchema);
+	return ChatModel;
 });
 
 module.exports = chatModel;

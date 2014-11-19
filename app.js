@@ -72,6 +72,17 @@ app.use(function(err, req, res, next) {
     });
 });
 
+app.newChatRoom = function(name, time, range, next) {
+    console.log("New room!");
+    var newRoom = new Chat({
+        "name" : name,
+        "time" : time,
+        "location" : [1],
+        "range" : range
+    });
+    newRoom.save(next);
+}
+
 // New User Connects
 io.on('connection', function(socket) {
     socket.on('message', function() {
