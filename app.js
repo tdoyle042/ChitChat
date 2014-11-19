@@ -72,12 +72,12 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.newChatRoom = function(name, time, range, next) {
-    console.log("New room!");
+app.newChatRoom = function(name, time, location, range, next) {
+    // console.log("New room!");
     var newRoom = new Chat({
         "name" : name,
         "time" : time,
-        "location" : [1],
+        "location" : location,
         "range" : range
     });
     newRoom.save(next);

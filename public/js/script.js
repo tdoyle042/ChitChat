@@ -29,3 +29,20 @@ function updateTime(time) {
 function updateRange(range){
 	document.querySelector('#miles').value = range;
 }
+
+/* Gets the locaiton of the user via HTML5 */
+function getLocation(callback) {
+	if(navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(callback);
+	} else {
+		console.log("Unable to get location")
+	}
+}
+
+/* Simple test function for getting location information */
+function testLocation() {
+	var printData = function(location) {
+		console.log(location.coords.latitude,location.coords.longitude);
+	}
+	getLocation(printData);
+}

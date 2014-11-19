@@ -78,11 +78,11 @@ router.put('/new', function(req,res) {
 
 router.get('/newTest', function(req,res) {
 	var app = appExports.app;
-	app.newChatRoom("test",Date.now(),1, function(err) {
-		if(!err) {
-			res.send("Successfully saved!");
+	app.newChatRoom("test",Date.now(),[0,0], function(err) {
+		if(err) {
+			res.send("Didn't save :(");
 		} else {
-			res.send("Didn't save :(")
+			res.send("Successfully saved!");
 		}
 	});
 });
