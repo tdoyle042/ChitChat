@@ -23,10 +23,9 @@ $(function() {   // when document is ready
 
 /* create_chat screen */
 function updateTime(time) {
-	console.log("poo");
-	document.querySelector('#volume').value = time;
+	document.querySelector('#minutes').value = time;
 }
 
 function updateRange(range){
-
+	document.querySelector('#miles').value = range;
 }
