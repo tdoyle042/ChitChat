@@ -73,7 +73,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.newChatRoom = function(name, time, location, range, next) {
-    // console.log("New room!");
+    // console.log("New room!", name, time, location, range);
     var newRoom = new Chat({
         "name" : name,
         "time" : time,

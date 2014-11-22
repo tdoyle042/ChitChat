@@ -66,14 +66,41 @@ router.get('/new', function(req, res){
 })
 
 // Create a new chat room
-router.put('/new', function(req,res) {
+router.post('/new', function(req,res) {
 	console.log("New Chat");
 	/* form attributes:
 		new_chat_name :String
 		new_chat_time :Number in minutes
+		new_chat_location :Array of numbers that represented [lat, long]
 		new_chat_range :Number in miles
 	*/
-	res.send();
+	var app = appExports.app;
+	console.log(req.body);
+	var name = req.body["new_chat_name"];
+	var time = req.body["new_chat_time"];
+	var location = req.body["new_chat_location"];
+	var range = req.body["new_chat_range"];
+
+	app.newChatRoom(name,time,location,range, function(err, room) {
+		if(err) {
+			res.status(400);
+			res.send({
+				"message" : "Error Creaitng Chat Room",
+				"error" : err
+			});
+		} else {
+			res.status(200);
+			var response_body = {
+				"message" : "Chatroom created!",
+				"room_name" : room.name,
+				"room_time" : room.time,
+				"room_location" : room.location,
+				"room_range" : room.range
+			};
+			var response_string = JSON.stringify(response_body);
+			res.send(response_string);
+		}
+	});
 });
 
 router.get('/newTest', function(req,res) {
