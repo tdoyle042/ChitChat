@@ -95,7 +95,7 @@ a, a:visited{
 	color: #000;
 }
 
-#home, #join_chat {
+#home, #join_chat, #new_chat {
 	width: 100%;
 	height: calc(100% - 50px);
 	overflow: scroll;
@@ -112,8 +112,8 @@ a, a:visited{
 	background: #fff;
 	z-index: 1000;
 	box-sizing: border-box;
-	position: fixed;
-	top: 0;
+	/*position: fixed;*/
+	/*top: 0;*/
 }
 
 #create_chat_b, #join_chat_b{
@@ -135,9 +135,9 @@ a, a:visited{
 
 /* join_chat screen */
 
-#join_chat{
-	margin-top: 50px; /* buffer for menu fixed */
-}
+/*#join_chat{
+	margin-top: 50px; /* buffer for menu fixed
+}*/
 
 .chatroom{
 	/*background: rgba(0, 187, 214, 0.8);*/
@@ -312,9 +312,9 @@ input {
 
 /* create_chat screen */
 
-#new_chat{
-	margin-top: 15%; /* buffer for menu fixed */
-}
+/*#new_chat{
+	margin-top: 15%; /* buffer for menu fixed
+}*/
 
 #new_chat_form{
 	padding: 15%;
@@ -382,6 +382,9 @@ input[type=range]{
 
 #feedback{
 	color: black;
+	float: left;
+	position: absolute
+	bottom: 0;
 }
 
 /* extras */

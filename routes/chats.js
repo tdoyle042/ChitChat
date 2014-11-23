@@ -48,6 +48,24 @@ router.get('/all', function(req,res) {
 			name: "300 Craig Street",
 			time: 18,
 			users: 4
+		},
+		{
+			id: 7,
+			name: "Little Asia",
+			time: 8,
+			users: 9
+		},
+		{
+			id: 8,
+			name: "Sabrina's House",
+			time: 26,
+			users: 13
+		},
+		{
+			id: 9,
+			name: "Razzy Fresh",
+			time: 18,
+			users: 4
 		}
 	]
 	res.send(fake_data);
