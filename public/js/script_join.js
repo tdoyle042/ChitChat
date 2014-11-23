@@ -17,14 +17,13 @@ function loadChats(){
 }
 
 function formatChats(allChats){
-	message = "<div id='title'>Chat Rooms Near You</div>";
+	message = "<div></div>";
 	allChats.forEach(function(chat){
 		message += "<a href='/chats/room/" + chat.id + "'><div class='chatroom'>"
 		message += "<div id='chat_data'>"
-		message += "<div class='chat_title'>" + chat.name + "</div>"
-		message += "<div class='chat_members'><span>" + chat.users + "</span><br> USERS</div>"
-		message += "</div>"
-		message += "<div class='chat_time'><span>" + chat.time + "</span> minutes left</div>"
+		message += "<div class='chat_title chat_top'>" + chat.name + "</div>"
+		message += "<div class='chat_time chat-bottom'>" + chat.time + " minutes left</div>" + "</div>"
+		message += "<div class='chat_members'><div id='user_number' class='chat_top'>" + chat.users + "</div><div id='users' class='chat_bottom'>users</div></div>"
 		message += "</div></a>"
 	})
 	return message;

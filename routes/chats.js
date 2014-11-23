@@ -6,7 +6,7 @@ var appExports = require('../app');
 
 // showing join_chat page.
 router.get('/', function(req, res){
-	res.sendFile("/join_chat.html", {root:'./public/html'});
+	res.sendFile("/index.html", {root:'./public/html'});
 })
 
 // Return all chat rooms available to you
@@ -75,7 +75,7 @@ router.post('/new', function(req,res) {
 		new_chat_range :Number in miles
 	*/
 	var app = appExports.app;
-	console.log(req.body);
+	console.log("req.body: ",req.body);
 	var name = req.body["new_chat_name"];
 	var time = req.body["new_chat_time"];
 	var location = req.body["new_chat_location"];
@@ -85,7 +85,7 @@ router.post('/new', function(req,res) {
 		if(err) {
 			res.status(400);
 			res.send({
-				"message" : "Error Creaitng Chat Room",
+				"message" : "Error Creating Chat Room",
 				"error" : err
 			});
 		} else {
@@ -98,6 +98,7 @@ router.post('/new', function(req,res) {
 				"room_range" : room.range
 			};
 			var response_string = JSON.stringify(response_body);
+			console.log("RESPOND: ", response_string);
 			res.send(response_string);
 		}
 	});
