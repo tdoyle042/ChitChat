@@ -96,7 +96,7 @@ router.post('/new', function(req,res) {
 	console.log("req.body: ",req.body);
 	var name = req.body["new_chat_name"];
 	var time = req.body["new_chat_time"];
-	var location = req.body["new_chat_location"];
+	var location = req.body["new_chat_location[]"];
 	var range = req.body["new_chat_range"];
 
 	app.newChatRoom(name,time,location,range, function(err, room) {
@@ -108,10 +108,12 @@ router.post('/new', function(req,res) {
 			});
 		} else {
 			res.status(200);
+			console.log("room.time_limit: ",room.time_limit)
+			time_limit = room.time_limit//.toDateString();
 			var response_body = {
 				"message" : "Chatroom created!",
 				"room_name" : room.name,
-				"room_time" : room.time,
+				"room_time" : time_limit,
 				"room_location" : room.location,
 				"room_range" : room.range
 			};

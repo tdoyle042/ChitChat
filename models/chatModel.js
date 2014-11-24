@@ -7,7 +7,7 @@ var chatModel = (function (mongoose) {
 	//Define Schema and Create Model
 	var chatSchema = mongoose.Schema({
 		name : String,
-		time : Date,
+		time_limit : Date,
 		location : [Number],
 		range : Number
 	});

@@ -73,10 +73,13 @@ app.use(function(err, req, res, next) {
 });
 
 app.newChatRoom = function(name, time, location, range, next) {
-    // console.log("New room!", name, time, location, range);
+    console.log("New room! name:", name," time:", time, " location:",location, " range:",range);
+    time_limit = new Date();
+    future = time_limit.getMinutes()+Number(time);
+    time_limit.setMinutes(future);
     var newRoom = new Chat({
         "name" : name,
-        "time" : time,
+        "time_limit" : time_limit,
         "location" : location,
         "range" : range
     });
