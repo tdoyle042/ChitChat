@@ -5,14 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var jade = require('jade');
-var mongoose = require('mongoose');
 
 
 var routes = require('./routes/index');
 var chats = require('./routes/chats');
-
-//Model Variables
-var Chat;
 
 var app = express();
 var server = require('http').Server(app);
@@ -33,15 +29,6 @@ app.use(express.static(path.join(__dirname, 'public/html')));
 
 app.use('/', routes);
 app.use('/chats', chats);
-
-// Databse Setup
-mongoose.connect("mongodb://localhost/db");
-var db = mongoose.connection;
-db.on('error',console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-    // Initialize DB Models
-    Chat = require('./models/chatModel')(mongoose);
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -71,17 +58,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-app.newChatRoom = function(name, time, location, range, next) {
-    // console.log("New room!");
-    var newRoom = new Chat({
-        "name" : name,
-        "time" : time,
-        "location" : location,
-        "range" : range
-    });
-    newRoom.save(next);
-}
 
 // New User Connects
 io.on('connection', function(socket) {
