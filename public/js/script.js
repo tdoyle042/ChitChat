@@ -1,21 +1,18 @@
 $(function() {   // when document is ready
+	x = 1;
+	$('#new_chat_button').click(function(){
+		console.log("bother"+x)
+		x++;
+	})
 	$('#new_chat_form').submit(function(event){
 		event.preventDefault();
-		createChat();
+		//freeze from clicking multiple times
+		document.getElementById("new_chat_button").disabled = true;
+		document.getElementById("new_chat_button").value = "Creating..";
+		$('#new_chat_button').css("cursor", "wait");
+		//loading screen
 
-		//put here for now because I can't get the actual function to work
-		// fakeData = {
-		// 	"message" : "Chatroom created!",
-		// 	"room_name" : $('#new_chat_name').val(),
-		// 	"room_time" : $('#new_chat_time').val(),
-		// 	"room_location" : "some location",
-		// 	"room_range" : $('#new_chat_range').val()
-		// };
-		// message = fakeData.message + "<br>";
-		// message += "Room name: " + fakeData.room_name + "<br>";
-		// message += "Expires in " + fakeData.room_time + " minutes <br>";
-		// message += "Set to " + fakeData.room_location + " to a " + fakeData.room_range + " mile radius";
-		// $('#feedback').html(message);
+		createChat();
 
 	})
 
@@ -47,6 +44,7 @@ function testLocation() {
 	getLocation(printData);
 }
 
+
 function createChat(){
 	var this_location;
 	getLocation(function(location){
@@ -63,22 +61,31 @@ function createChat(){
 			},
 			success: function(data) {
 				// console.log("getting data back..");
-				console.log("DATA: ", data);
+				// console.log("DATA: ", data);
 				data = JSON.parse(data);
 				now = new Date();
 				future = new Date(data.room_time);
-				console.log("now: ", now);
-				console.log("future: ", future);
 				time_left = Math.round((future-now)/1000/60); //getting minutes
-				console.log("time left: ", time_left);
 				message = data.message + "<br>";
 				message += "Room name: " + data.room_name + "<br>";
 				message += "Expires in " + time_left + " minutes <br>";
 				message += "Set to a " + data.room_range + " mile radius of where you are right now";
 				// message += "Set to " + data.room_location + " to a " + data.room_range + " mile radius";
 				$('#feedback').html(message);
+				resetForm();	
 			}
 		});
 	})
-	
+}
+
+function resetForm(){
+	$('#new_chat_name').val("");
+	document.getElementById("new_chat_time").value = 35;
+	document.querySelector('#minutes').value = 35
+	document.getElementById("new_chat_range").value = 3;
+	document.querySelector('#miles').value = 3;
+	document.getElementById("new_chat_button").disabled = false;
+	document.getElementById("new_chat_button").value = "Create Chat Room";
+	$('#new_chat_button').css("cursor", "pointer");
+
 }
