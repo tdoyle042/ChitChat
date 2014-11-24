@@ -71,6 +71,12 @@ router.get('/all', function(req,res) {
 	res.send(fake_data);
 });
 
+router.post('/all', function(req, res) {
+	var location = req.body["location"];
+	var results = app.chatRoomsInRange(location);
+	res.send({"rooms" : results});
+});
+
 //fake chatroom route for testing front-end
 router.get('/room/:id', function(req, res){
 	res.sendFile("/chatroom1.html", {root:'./public/html'});
@@ -93,7 +99,6 @@ router.post('/new', function(req,res) {
 		new_chat_range :Number in miles
 	*/
 	var app = appExports.app;
-	console.log("req.body: ",req.body);
 	var name = req.body["new_chat_name"];
 	var time = req.body["new_chat_time"];
 	var location = req.body["new_chat_location"];

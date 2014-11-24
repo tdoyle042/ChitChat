@@ -83,6 +83,10 @@ app.newChatRoom = function(name, time, location, range, next) {
     newRoom.save(next);
 }
 
+app.chatRoomsInRange = function(location) {
+   return Chat.findChatsInRange(location);
+};
+
 // New User Connects
 io.on('connection', function(socket) {
     socket.on('message', function() {
