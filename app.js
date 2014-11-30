@@ -59,6 +59,23 @@ app.use(function(err, req, res, next) {
     });
 });
 
+<<<<<<< HEAD
+=======
+app.newChatRoom = function(name, time, location, range, next) {
+    console.log("New room! name:", name," time:", time, " location:",location, " range:",range);
+    time_limit = new Date();
+    future = time_limit.getMinutes()+Number(time);
+    time_limit.setMinutes(future);
+    var newRoom = new Chat({
+        "name" : name,
+        "time_limit" : time_limit,
+        "location" : location,
+        "range" : range
+    });
+    newRoom.save(next);
+}
+
+>>>>>>> e5952a8dd688141c8aa2f44f89d8dbae745b2a11
 // New User Connects
 io.on('connection', function(socket) {
     socket.on('message', function() {

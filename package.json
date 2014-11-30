@@ -14,6 +14,11 @@
     "serve-favicon": "~2.1.3",
     "debug": "~2.0.0",
     "socket.io" : "~1.x",
+<<<<<<< HEAD
     "mongoose" : "~3.8.x"
+=======
+    "mongoose" : "~3.9.x",
+    "mocha" : "~2.x"
+>>>>>>> e5952a8dd688141c8aa2f44f89d8dbae745b2a11
   }
 }
