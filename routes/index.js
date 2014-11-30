@@ -40,8 +40,35 @@ io.on('connection', function (socket) {
  });
 
  // broadcasting typing
- 	socket.on('typing', function() {}
+ 	socket.on('typing', function() {
  		socket.broadcast.emit('typing', {
  			username: socket.username
- 		}))
-}) 
+ 		});
+ 	})
+
+ // broadcasting 'stop typing'
+ 	socket.on('stop typing', function (){
+ 		socket.broadcast.emit('stop typing', {
+ 			username: socket.username
+ 		});
+ 	});
+
+ // user disconnect function
+ 	socket.on('disconnect', function() {
+ 		if (addedUser) {
+ 			delete usernames[socket.username];
+ 			--numUsers;
+
+ 			socket.broadcast.emit('user left', {
+ 				username: socket.username,
+ 				numUsers: numUsers
+ 			});
+ 		}
+ 	});
+}); 
+
+
+
+
+
+
