@@ -10,11 +10,11 @@ var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 var chats = require('./routes/chats');
+var socketHandlers = require('./routes/sockets');
 
 // Model Variables
 var Chat;
 
->>>>>>> getAllRooms
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -86,16 +86,8 @@ app.chatRoomsInRange = function(location, done) {
     Chat.findChatsInRange(location, done);
 };
 
-// New User Connects
-io.on('connection', function(socket) {
-    socket.on('message', function() {
-
-    });
-
-    socket.on('disconnect', function() {
-
-    });
-});
+// Set up socket handlers
+socketHandlers(io);
 
 
 module.exports.app = app;
