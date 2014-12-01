@@ -72,9 +72,12 @@ router.get('/all', function(req,res) {
 });
 
 router.post('/all', function(req, res) {
+	var app = appExports.app;
+
 	var location = req.body["location"];
-	var results = app.chatRoomsInRange(location);
-	res.send({"rooms" : results});
+	app.chatRoomsInRange(location, function(results) {
+		res.send({"rooms" : results});
+	});
 });
 
 //fake chatroom route for testing front-end

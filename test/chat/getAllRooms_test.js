@@ -3,7 +3,7 @@ var http = require('http');
 var chatUtil = require('../../util/chats_util');
 
 module.exports = function(done) {
-	var name = "TestRoom";
+	var name = 'TestRoom';
 	var location = [100,100];
 	var range = 10;
 	var time = 1;
@@ -18,14 +18,15 @@ module.exports = function(done) {
 				if(err !== null) {
 					return err;
 				} else {
-					for (var room in data["rooms"]) {
-						if(room.name === name && room.location === location &&
-							room.range === range && room.time === time) {
-							done();
+					for (var index in data["rooms"]) {
+						var room = data["rooms"][index];
+						if(room.name === name && room.location[0] === location[0] &&
+							room.location[1] === location[1] && room.range === range) {
+							return done();
 						}
 					}
 					var resultErr = Error("Room Created Was Not Found in GetAllRooms");
-					done(resultErr);
+					return done(resultErr);
 				}
 			});
 		}

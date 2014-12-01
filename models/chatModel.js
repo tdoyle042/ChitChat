@@ -15,16 +15,18 @@ var chatModel = (function (mongoose) {
 
 	// Helper Function to determine the distance between
 	// two points of format [lat, long]
-	var distance = function(l1, l2) {
-		var R = 3959; // mi
-		var φ1 = lat1.toRadians();
-		var φ2 = lat2.toRadians();
-		var Δφ = (lat2-lat1).toRadians();
-		var Δλ = (lon2-lon1).toRadians();
+	var distance = function(p1, p2) {
+		var toRad = Math.PI*2 / 360;
+		var lat1 = p1[0] * toRad;
+		var lon1 = p1[1] * toRad;
+		var lat2 = p2[0] * toRad;
+		var lon2 = p2[1] * toRad;
 
-		var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-		        Math.cos(φ1) * Math.cos(φ2) *
-	        	Math.sin(Δλ/2) * Math.sin(Δλ/2);
+		var R = 3959; // mi
+
+		var dlon = lon1 - lon2;
+		var dlat = lat1 - lat2;
+		var a = Math.pow(Math.sin(dlat/2),2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon/2),2);
 		var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 
 		var d = R * c;
@@ -33,14 +35,15 @@ var chatModel = (function (mongoose) {
 
 	// Method to perform the database query to find chats
 	// that are within range of the user
-	Chat.prototype.findChatsInRange = function(location) {
-		this.find(function(err, results) {
+	Chat.findChatsInRange = function(location, done) {
+		Chat.find({}, function(err, results) {
 			if(err) {
 				return err
 			} else {
-				return results.filter(function(element) {
-					return distance(location, element.location) < element.range;
+				var filteredResults = results.filter(function(element) {
+					return distance(location, element.location) <= element.range;
 				});
+				return done(filteredResults);
 			}
 		});
 	}
