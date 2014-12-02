@@ -38,6 +38,15 @@ app.use(express.static(path.join(__dirname, 'public/html')));
 app.use('/', routes);
 app.use('/chats', chats);
 
+// Databse Setup
+mongoose.connect("mongodb://localhost/db");
+var db = mongoose.connection;
+db.on('error',console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+    // Initialize DB Models
+    Chat = require('./models/chatModel')(mongoose);
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
