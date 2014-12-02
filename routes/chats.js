@@ -73,9 +73,10 @@ router.get('/', function(req, res){
 
 router.post('/all', function(req, res) {
 	var app = appExports.app;
-
-	var location = req.body["location"];
+	console.log("req.body: ", req.body);
+	var location = req.body["location[]"];
 	app.chatRoomsInRange(location, function(results) {
+		console.log("sending rooms...")
 		res.send({"rooms" : results});
 	});
 });

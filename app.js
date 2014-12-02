@@ -92,6 +92,7 @@ app.newChatRoom = function(name, time, location, range, next) {
 }
 
 app.chatRoomsInRange = function(location, done) {
+    console.log("getting chat rooms in range...")
     Chat.findChatsInRange(location, done);
 };
 

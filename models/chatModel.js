@@ -41,6 +41,8 @@ var chatModel = (function (mongoose) {
 				return err
 			} else {
 				var filteredResults = results.filter(function(element) {
+					console.log("ELEMENT IS: ",element)
+					console.log("my location is: ", location)
 					return distance(location, element.location) <= element.range;
 				});
 				return done(filteredResults);

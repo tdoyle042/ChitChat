@@ -1,9 +1,9 @@
 $(function() {   // when document is ready
-	x = 1;
-	$('#new_chat_button').click(function(){
-		console.log("bother"+x)
-		x++;
-	})
+	// x = 1;
+	// $('#new_chat_button').click(function(){
+	// 	console.log("bother"+x)
+	// 	x++;
+	// })
 	$('#new_chat_form').submit(function(event){
 		event.preventDefault();
 		//freeze from clicking multiple times
@@ -15,6 +15,9 @@ $(function() {   // when document is ready
 		createChat();
 
 	})
+
+	// testLocation();
+	loadChats();
 
 });
 
@@ -38,12 +41,52 @@ function getLocation(callback) {
 
 /* Simple test function for getting location information */
 function testLocation() {
+	console.log("Testing location");
 	var printData = function(location) {
 		console.log(location.coords.latitude,location.coords.longitude);
 	}
 	getLocation(printData);
 }
 
+function loadChats(){
+	console.log("loading chats...")
+	getLocation(function(location){
+		coords = [location.coords.latitude,location.coords.longitude]
+		console.log("my current location is: ", coords)
+		$.ajax({
+			url: "/chats/all",
+			type: "post",
+			data: {
+				"location": coords
+			},
+			success: function(data) {
+				console.log("DATA FOR LOADCHATS: ", data.rooms)
+				chats = formatChats(data.rooms);
+				$('#join_chat').html(chats);
+			}
+		});
+	})
+}
+
+function formatChats(allChats){
+	message = "<div></div>";
+	now = new Date()
+	allChats.forEach(function(chat){
+		console.log("chat: ", chat)
+		time_limit = new Date(chat.time_limit)
+		time = Math.round((time_limit-now)/1000/60); //minutes remaining
+
+		if (time > 0){
+			message += "<a href='/chats/room/" + chat._id + "'><div class='chatroom'>"
+			message += "<div id='chat_data'>"
+			message += "<div class='chat_title chat_top'>" + chat.name + "</div>"
+			message += "<div class='chat_time chat-bottom'>" + time + " minutes left</div>" + "</div>"
+			message += "<div class='chat_members'><div id='user_number' class='chat_top'>" + "##"/*chat.users*/ + "</div><div id='users' class='chat_bottom'>users</div></div>"
+			message += "</div></a>"
+		}
+	})
+	return message;
+}
 
 function createChat(){
 	var this_location;
