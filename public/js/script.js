@@ -19,6 +19,11 @@ $(function() {   // when document is ready
 	// testLocation();
 	loadChats();
 
+	$('#feedback_close').click(function(){
+		$('#feedback_container').fadeOut();
+
+	})
+
 });
 
 /* create_chat screen */
@@ -115,6 +120,7 @@ function createChat(){
 				message += "Set to a " + data.room_range + " mile radius of where you are right now";
 				// message += "Set to " + data.room_location + " to a " + data.room_range + " mile radius";
 				$('#feedback').html(message);
+				$('#feedback_container').fadeIn();
 				resetForm();	
 			}
 		});

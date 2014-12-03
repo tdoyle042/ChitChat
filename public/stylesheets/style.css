@@ -86,6 +86,7 @@ html{
 }
 
 body {
+	position: relative;
 	font-family: 'Montserrat', sans-serif;
 	/*color: #2f3333;*/
 	color: white;
@@ -115,7 +116,7 @@ a, a:visited{
 	font-size: 2em;
 	font-weight: 700;
 	width: 100%;
-	height: 50px;
+	/*height: 50px;*/
 	background: #fff;
 	z-index: 1000;
 	box-sizing: border-box;
@@ -324,9 +325,9 @@ input {
 }*/
 
 #new_chat_form{
-	padding: 15%;
-	padding-top: 10%;
+	padding: 40px 10%;
 	text-align: center;
+	color: #000;
 }
 
 input:focus{
@@ -337,62 +338,103 @@ input:focus{
 	/*margin-bottom: 20px;*/
 }
 
+.slider {
+	margin-top: 20px;
+}
+
 #new_chat_name{ /*input field*/
 	background: none;
-	border-style: solid; 
+	border-bottom: solid; 
 	border-width: 0px 0px 2px 0px; 
-	border-color: #0288D1;
-	color: #2f3333;
-	font-size: 2rem;
-	width: 100%;
+	border-color: #00bfdf;
+	color: #000;
+	font-size: 2em;
+	width: 90%;
 	margin-top: 0px;
+	margin-bottom: 50px;
 }
 
 #new_chat_name:focus{
 	border-width: 0px 0px 3px 0px;
 }
 
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #aaa;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #aaa;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #aaa;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #aaa;
+}
+
 input[type=range]{
 	-webkit-appearance: none;
-	background-color: #039BE5;
-	width: 80%;
-	height: 2%;
-	border-radius: 4px;
-	margin-bottom: 5%;
+	background-color: #00bfdf;
+	width: 85%;
+	height: 10px;
+	border-radius: 5px;
+	margin-bottom: 50px;
 }
 
 #minutes, #miles{
-	color: white;
-	font-size: 4rem;
+	color: #000;
+	font-size: 4em;
 	font-weight: bold;
 	line-height: 4rem;
 }
 
 #range_title{
+	color: #000;
 	margin:0px;
 	padding: 0px;
-	font-size: 1.5rem;
+	font-size: 1.5em;
 	font-weight: bold;
 }
 
 #new_chat_button{
 	border: none;
 	color: white;
-	background: #0288D1;
+	background: #00bfdf;
 	font-size: 1em;
 	padding: 10px;
 	width: 180px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 10%;
 	cursor: pointer;
 }
 
-#feedback{
+#feedback_container {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.85);
+	display: none;
+}
+
+/*#feedback{
 	color: black;
 	float: left;
 	position: absolute
 	bottom: 0;
+}*/
+
+#feedback {
+	background-color: #00bfdf;
+	width: 75%;
+	margin: 0 auto;
+	padding: 15px;
+	box-sizing: border-box;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* extras */
@@ -420,7 +462,7 @@ input[type=range]{
 }
 
 #add img{
-	width: 30px;
+	width: 25px;
 }
 
 #time {
