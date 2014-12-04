@@ -2,7 +2,7 @@ $(function() {
 	console.log("room id: ", window.location.pathname.split("/")[3])
 $('#text_bar').focus();
 var socket = io()
-var shapes = ['circle-teal', 'square-pink', 'triangle-teal','hexagon-purple', 'pentagon', 'star', 'square-red', 'pentagon-blue', 'circle-red', 'hexagon-pink', 'pentagon-pink', 'triangle-red', 'hexagon-red', 'star-green', 'square-blue', 'hexagon','circle-blue', 'square', 'circle', 'triangle',   'star-blue', 'hexagon-teal', 'pentagon-teal', 'star-teal', 'square-purple', 'circle-purple', 'square-pink', 'circle-teal', 'triangle-pink',  'star-pink', 'square-green', 'pentagon-red', 'star-red', 'hexagon-green', 'pentagon-green', 'triangle-blue', 'hexagon-blue', 'triangle-purple', 'circle-green', 'triangle-green', 'pentagon-purple', 'star-purple']
+var shapes = ['circle-teal', 'square-pink', 'triangle-teal','hexagon-purple', 'pentagon-white', 'star-white', 'square-red', 'pentagon-blue', 'circle-red', 'hexagon-pink', 'pentagon-pink', 'triangle-red', 'hexagon-red', 'star-green', 'square-blue', 'hexagon-white','circle-blue', 'square-white', 'circle-white', 'triangle-white',   'star-blue', 'hexagon-teal', 'pentagon-teal', 'star-teal', 'square-purple', 'circle-purple', 'square-pink', 'circle-teal', 'triangle-pink',  'star-pink', 'square-green', 'pentagon-red', 'star-red', 'hexagon-green', 'pentagon-green', 'triangle-blue', 'hexagon-blue', 'triangle-purple', 'circle-green', 'triangle-green', 'pentagon-purple', 'star-purple']
 var roomId = window.location.pathname.split("/")[3]
 var userId
 var others = [""]
@@ -20,6 +20,16 @@ socket.on('joined room', function(data){
 
 socket.on('user joined', function(data){
 	console.log("a user has joined");
+	others.push(data.userId);
+	new_shape = shapes[others.indexOf(data.userId)];
+	msg = '<div class="join_msg">A new user has joined disguised as a '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+'!</div>'
+	$('#chat_room').append(msg)
+})
+
+//user left
+socket.on('user left', function(data){
+	msg = '<div class="join_msg">The '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+' has left the chat.</div>'
+	$('#chat_room').append(msg)
 })
 
 //getting messages from server
@@ -37,6 +47,8 @@ socket.on('display message', function(data){
 				others.push(data.userId)
 			}
 			i = others.indexOf(data.userId); // to correspond with shape array
+			console.log("i: ", i)
+			console.log("others: ", others)
 			msg = '<div class="bubble"><img src="../../images/user_img/img_'+shapes[i]+'.png"><div class="message message_them">'+data.message+'</div></div>'
 		}
 		$('#chat_room').append(msg)

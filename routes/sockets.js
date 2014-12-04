@@ -53,14 +53,10 @@ module.exports = function(io) {
 			User leaves a chat
 			Decrement number of people in a chat
 		*/
-		socket.on('leave', function() {
-
-			if (addedUser) {
-
-				socket.broadcast.emit('user left', {
-					username: socket.id
-				});
-			}
+		socket.on('disconnect', function() {
+			socket.broadcast.emit('user left', {
+				username: socket.id
+			});
 		});
 	}); 
 }

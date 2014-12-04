@@ -259,6 +259,12 @@ a, a:visited{
 	padding-bottom: 40px;
 }
 
+.join_msg{
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+}
+
 .bubble {
 	position: relative;
 	clear: both;
