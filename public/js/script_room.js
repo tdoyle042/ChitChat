@@ -6,6 +6,7 @@ var shapes = ['circle-teal', 'square-pink', 'triangle-teal','hexagon-purple', 'p
 var roomId = window.location.pathname.split("/")[3]
 var userId
 var others = [""]
+var canSubmit
 
 getRoomData(roomId);
 document.getElementById('chat_room').scrollTop = document.getElementById('chat_room').scrollHeight
@@ -16,6 +17,7 @@ socket.emit('join', {roomId: roomId})
 socket.on('joined room', function(data){
 	console.log("data.userId: ", data.userId)
 	userId = data.userId
+	canSubmit = true;
 })
 
 socket.on('user joined', function(data){
@@ -23,7 +25,7 @@ socket.on('user joined', function(data){
 		console.log("a user has joined");
 		others.push(data.userId);
 		new_shape = shapes[others.indexOf(data.userId)];
-		msg = '<div class="join_msg">A new user has joined disguised as a '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+'!</div>'
+		msg = '<div class="join_msg">A new user has joined, disguised as a '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+'!</div>'
 		$('#chat_room').append(msg)
 	}
 })
@@ -63,14 +65,16 @@ socket.on('display message', function(data){
 
 //sending a message to the server
 $('#chat_input').submit(function(e){
-	if ($('#text_bar').val() != ""){
-		console.log("sending message: ", $('#text_bar').val())
+	if (canSubmit){
+		if ($('#text_bar').val() != ""){
+			console.log("sending message: ", $('#text_bar').val())
 
-		socket.emit('new message', {roomId: roomId, message: $('#text_bar').val()})
-		$('#text_bar').val("")
-		$('#text_bar').focus()
+			socket.emit('new message', {roomId: roomId, message: $('#text_bar').val()})
+			$('#text_bar').val("")
+			$('#text_bar').focus()
+		}
+		e.preventDefault();
 	}
-	e.preventDefault();
 })
 
 
@@ -105,7 +109,10 @@ function updateTimer(time_limit){
 	minutes = Math.floor(diff_sec / 60)
 	if (minutes < 2){
 		seconds = diff_sec % 60
-		if (seconds < 10){
+		if ((minutes <= 0) && (seconds <= 0)){
+			minutes = "00";
+			seconds = "00";
+		} else if (seconds < 10){
 			seconds = "0"+seconds
 		}
 		
@@ -116,6 +123,8 @@ function updateTimer(time_limit){
 
 	//close if time goes to zero
 	if ((minutes == 0) && (seconds == 0)){
-		socket.emit('close chat', {roomId: roomId})
+		$('#feedback_container').fadeIn();
+		canSubmit = false;
+		// socket.emit('close chat', {roomId: roomId})
 	}
 }
