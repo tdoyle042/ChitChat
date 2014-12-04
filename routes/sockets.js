@@ -17,8 +17,14 @@ module.exports = function(io) {
 			Sends the message to all other connected sockets
 		*/
 		socket.on('new message', function (data) {
-			socket.broadcast.emit('new message', {
-				username: socket.id,
+			console.log("new message data: ", data);
+			socket.broadcast.emit('display message', {
+				userId: socket.id,
+				roomId : data.roomId,
+				message: data.message
+			});
+			socket.emit('display message', {
+				userId: socket.id,
 				roomId : data.roomId,
 				message: data.message
 			});

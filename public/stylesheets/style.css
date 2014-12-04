@@ -262,7 +262,7 @@ a, a:visited{
 	line-height: 1.5em;
 }
 
-.message_1 {
+.message_them {
 	background: #00bfdf;
 }
 
@@ -278,7 +278,7 @@ a, a:visited{
 	right: 33px;
 }*/
 
-.message_3 {
+.message_me {
 	background: #fff;
 	color: #000;
 	float: right;
@@ -325,6 +325,7 @@ input {
 	height: 40px;
 	margin: 0px;
 	width: 20%;
+	cursor: pointer;
 }
 
 /* create_chat screen */
