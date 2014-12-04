@@ -118,13 +118,16 @@ function updateTimer(time_limit){
 		
 		$('#time').html(minutes+":"+seconds)
 	} else {
-		$('#time').html(minutes+" min")
+		$('#time').html((minutes+1)+" min")
 	}
 
 	//close if time goes to zero
 	if ((minutes == 0) && (seconds == 0)){
+		clearInterval(timer)
 		$('#feedback_container').fadeIn();
 		canSubmit = false;
+		msg = "<div class='join_msg'>Time's up!</div>"
+		$('#chat_room').append(msg)
 		// socket.emit('close chat', {roomId: roomId})
 	}
 }
