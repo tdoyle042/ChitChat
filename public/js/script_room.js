@@ -8,6 +8,7 @@ var userId
 var others = [""]
 
 getRoomData(roomId);
+document.getElementById('chat_room').scrollTop = document.getElementById('chat_room').scrollHeight
 
 //new person joined room, send room id to get userId
 socket.emit('join', {roomId: roomId})
@@ -39,6 +40,7 @@ socket.on('display message', function(data){
 			msg = '<div class="bubble"><img src="../../images/user_img/img_'+shapes[i]+'.png"><div class="message message_them">'+data.message+'</div></div>'
 		}
 		$('#chat_room').append(msg)
+		document.getElementById('chat_room').scrollTop = document.getElementById('chat_room').scrollHeight
 	}
 })
 

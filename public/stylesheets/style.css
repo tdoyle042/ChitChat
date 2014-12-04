@@ -90,7 +90,7 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	/*color: #2f3333;*/
 	color: white;
-	background: #ffe600;
+	background: #92d6e3; /*#ffe600;*/
 	margin: 0px;
 	width: 100%;
 	font-size: 10pt;
@@ -107,6 +107,10 @@ a, a:visited{
 	width: 100%;
 	height: calc(100% - 50px);
 	overflow: scroll;
+}
+
+#new_chat{
+	background: #ffe600;
 }
 
 #title{
@@ -142,7 +146,7 @@ a, a:visited{
 }
 
 /* join_chat screen */
-#loading-gif{
+#loading-gif, #redirecting-gif{
 	width: 300px;
 	margin-top: 50%;
 	margin-left: 10%;
@@ -234,6 +238,8 @@ a, a:visited{
 	height: calc(100% - 50px);
 	padding-top: 10px;
 	box-sizing: border-box;
+	overflow-y: scroll;
+	padding-bottom: 40px;
 }
 
 .bubble {
@@ -300,6 +306,7 @@ input {
 	border-style: solid; 
 	/*border-width: 1px 0px 0px 0px; 
 	border-color: #2f3333;*/
+	z-index: 1000;
 }
 
 #chat_input input{
@@ -428,12 +435,15 @@ input[type=range]{
 	display: none;
 }
 
-/*#feedback{
-	color: black;
-	float: left;
-	position: absolute
-	bottom: 0;
-}*/
+#redirecting {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #00bfdf;
+	z-index: 1002;
+	display: none;
+}
 
 #feedback {
 	background-color: #00bfdf;

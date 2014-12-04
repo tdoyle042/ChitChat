@@ -10,8 +10,8 @@ $(function() {   // when document is ready
 		document.getElementById("new_chat_button").disabled = true;
 		document.getElementById("new_chat_button").value = "Creating..";
 		$('#new_chat_button').css("cursor", "wait");
-		//loading screen
-
+		
+		$('#redirecting').fadeIn(); //loading screen
 		createChat();
 
 	})
@@ -116,7 +116,8 @@ function createChat(){
 				// console.log("getting data back..");
 				// console.log("DATA: ", data);
 				data = JSON.parse(data);
-				now = new Date();
+				document.location.href = '/chats/room/'+data.room_id;
+				/*now = new Date();
 				future = new Date(data.room_time);
 				time_left = Math.round((future-now)/1000/60); //getting minutes
 				message = data.message + "<br>";
@@ -126,7 +127,7 @@ function createChat(){
 				// message += "Set to " + data.room_location + " to a " + data.room_range + " mile radius";
 				$('#feedback').html(message);
 				$('#feedback_container').fadeIn();
-				resetForm();	
+				resetForm();	*/
 			}
 		});
 	})

@@ -71,6 +71,7 @@ router.post('/new', function(req,res) {
 			time_limit = room.time_limit//.toDateString();
 			var response_body = {
 				"message" : "Chatroom created!",
+				"room_id": room.id,
 				"room_name" : room.name,
 				"room_time" : time_limit,
 				"room_location" : room.location,
