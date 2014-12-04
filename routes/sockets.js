@@ -41,11 +41,13 @@ module.exports = function(io) {
 			// send back to one user what their userId is
 			socket.emit('joined room', {
 				userId: socket.id,
+				roomId: roomId
 			});
 
 			// let everyone know that a user has joined
 			socket.broadcast.emit('user joined', {
-				userId: socket.id
+				userId: socket.id,
+				roomId: roomId
 			});
 		});
 
@@ -55,7 +57,7 @@ module.exports = function(io) {
 		*/
 		socket.on('disconnect', function() {
 			socket.broadcast.emit('user left', {
-				username: socket.id
+				userId: socket.id
 			});
 		});
 	}); 

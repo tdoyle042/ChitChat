@@ -19,17 +19,22 @@ socket.on('joined room', function(data){
 })
 
 socket.on('user joined', function(data){
-	console.log("a user has joined");
-	others.push(data.userId);
-	new_shape = shapes[others.indexOf(data.userId)];
-	msg = '<div class="join_msg">A new user has joined disguised as a '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+'!</div>'
-	$('#chat_room').append(msg)
+	if (data.roomId == roomId){
+		console.log("a user has joined");
+		others.push(data.userId);
+		new_shape = shapes[others.indexOf(data.userId)];
+		msg = '<div class="join_msg">A new user has joined disguised as a '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+'!</div>'
+		$('#chat_room').append(msg)
+	}
 })
 
-//user left
+//user left.. check if they were in this chat and display message
 socket.on('user left', function(data){
-	msg = '<div class="join_msg">The '+new_shape.split('-')[1]+' '+new_shape.split('-')[0]+' has left the chat.</div>'
-	$('#chat_room').append(msg)
+	if (others.indexOf(data.userId) != -1){
+		old_shape = shapes[others.indexOf(data.userId)];
+		msg = '<div class="join_msg">The '+old_shape.split('-')[1]+' '+old_shape.split('-')[0]+' has left the chat.</div>'
+		$('#chat_room').append(msg)
+	}
 })
 
 //getting messages from server
@@ -107,5 +112,10 @@ function updateTimer(time_limit){
 		$('#time').html(minutes+":"+seconds)
 	} else {
 		$('#time').html(minutes+" min")
+	}
+
+	//close if time goes to zero
+	if ((minutes == 0) && (seconds == 0)){
+		socket.emit('close chat', {roomId: roomId})
 	}
 }
