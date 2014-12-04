@@ -29,6 +29,9 @@ module.exports = function(io) {
 		socket.on('join', function(msg) {
 			roomId = msg.roomId;
 
+			//allow user to join specific room
+			socket.join('room')
+
 			// send back to one user what their userId is
 			socket.emit('joined room', {
 				userId: socket.id
@@ -45,6 +48,7 @@ module.exports = function(io) {
 			Decrement number of people in a chat
 		*/
 		socket.on('leave', function() {
+
 			if (addedUser) {
 
 				socket.broadcast.emit('user left', {
