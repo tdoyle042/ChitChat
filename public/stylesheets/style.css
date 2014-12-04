@@ -216,6 +216,23 @@ a, a:visited{
 
 .chat_bottom{
 	font-size: 1em;
+	height: 7px;
+}
+
+.chat_title{
+	font-size: 2.5em;
+}
+
+#footer{
+	text-transform: uppercase;
+	color: gray;
+	font-size: 1em;
+	text-align: center;
+	bottom: 5px;
+	font-weight: normal;
+	position: fixed;
+	width: 100%;
+	display: none;
 }
 
 /*@media(max-width: 980px) {

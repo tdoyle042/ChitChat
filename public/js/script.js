@@ -65,10 +65,11 @@ function loadChats(){
 				"location": coords
 			},
 			success: function(data) {
-				console.log("DATA FOR LOADCHATS: ", data.rooms)
+				// console.log("DATA FOR LOADCHATS: ", data.rooms)
 				chats = formatChats(data.rooms);
 				if (chats != "<div></div>"){
 					$('#join_chat').html(chats);
+					$('#footer').fadeIn();
 				} else {
 					$('#join_chat').html("");
 					$('#no_chats').fadeIn();
@@ -90,8 +91,9 @@ function formatChats(allChats){
 			message += "<a href='/chats/room/" + chat._id + "'><div class='chatroom'>"
 			message += "<div id='chat_data'>"
 			message += "<div class='chat_title chat_top'>" + chat.name + "</div>"
-			message += "<div class='chat_time chat-bottom'>" + time + " minutes left</div>" + "</div>"
-			message += "<div class='chat_members'><div id='user_number' class='chat_top'>" + "##"/*chat.users*/ + "</div><div id='users' class='chat_bottom'>users</div></div>"
+			// message += "<div class='chat_time chat-bottom'>" + time + " minutes left</div>" + "</div>"
+			message += "<div class='chat_time chat_bottom'></div>" + "</div>"
+			message += "<div class='chat_members'><div id='user_number' class='chat_top'>" + time + "</div><div id='users' class='chat_bottom'>MIN LEFT</div></div>"
 			message += "</div></a>"
 		}
 	})
