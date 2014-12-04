@@ -142,10 +142,19 @@ a, a:visited{
 }
 
 /* join_chat screen */
+#loading-gif{
+	width: 300px;
+	margin-top: 50%;
+	margin-left: 10%;
+}
 
-/*#join_chat{
-	margin-top: 50px; /* buffer for menu fixed
-}*/
+#no_chats{
+	text-align: center;
+	color: black;
+	font-size: 1.5rem;
+	padding: 15%;
+	display: none;
+}
 
 .chatroom{
 	/*background: rgba(0, 187, 214, 0.8);*/

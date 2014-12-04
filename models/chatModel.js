@@ -41,13 +41,25 @@ var chatModel = (function (mongoose) {
 				return err
 			} else {
 				var filteredResults = results.filter(function(element) {
-					console.log("ELEMENT IS: ",element)
-					console.log("my location is: ", location)
+					// console.log("ELEMENT IS: ",element)
+					// console.log("my location is: ", location)
 					return distance(location, element.location) <= element.range;
 				});
 				return done(filteredResults);
 			}
 		});
+	}
+
+	// Method to query database given room _id
+	// returns object of data information
+	Chat.findChatRoom = function(roomId, done){
+		Chat.findById(roomId, function(err, results){
+			if (err){
+				return err
+			} else {
+				return done(results);
+			}
+		})
 	}
 
 	return Chat;

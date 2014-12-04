@@ -96,6 +96,10 @@ app.chatRoomsInRange = function(location, done) {
     Chat.findChatsInRange(location, done);
 };
 
+app.findChatRoom = function(roomId, done){
+    Chat.findChatRoom(roomId, done);
+}
+
 // Set up socket handlers
 socketHandlers(io);
 

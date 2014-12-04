@@ -67,7 +67,12 @@ function loadChats(){
 			success: function(data) {
 				console.log("DATA FOR LOADCHATS: ", data.rooms)
 				chats = formatChats(data.rooms);
-				$('#join_chat').html(chats);
+				if (chats != "<div></div>"){
+					$('#join_chat').html(chats);
+				} else {
+					$('#join_chat').html("");
+					$('#no_chats').fadeIn();
+				}
 			}
 		});
 	})
@@ -77,7 +82,7 @@ function formatChats(allChats){
 	message = "<div></div>";
 	now = new Date()
 	allChats.forEach(function(chat){
-		console.log("chat: ", chat)
+		// console.log("chat: ", chat)
 		time_limit = new Date(chat.time_limit)
 		time = Math.round((time_limit-now)/1000/60); //minutes remaining
 

@@ -11,14 +11,17 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   		<script src="/socket.io/socket.io.js"></script>
    		<script src="js/script.js"></script>
-   		<script src="js/script_join.js"></script>
 	</head>
 	<body>
 		<div id="title">Chit Chat</div>
 	    <div id="join_chat">
-	    	<img src="images/loading-home.gif" width="300px">
+	    	<img id="loading-gif" src="images/loading-home.gif" width="300px">
 
+	    </div>
+	    <div id="no_chats">
+	    	There are no chat rooms to join right now.
 	    </div>
 
 		<!-- <div id="back"><a href="/"><img src="images/back_arrow.png"></a></div> -->

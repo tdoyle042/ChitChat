@@ -9,68 +9,6 @@ router.get('/', function(req, res){
 	res.sendFile("/index.html", {root:'./public/html'});
 });
 
-// Return all chat rooms available to you
-// router.get('/', function(req,res) {
-// 	console.log("Get Chats");
-// 	fake_data = [
-// 		{
-// 			id: 1,
-// 			name: "Starbucks",
-// 			time: 5,
-// 			users: 24
-// 		},
-// 		{
-// 			id: 2,
-// 			name: "Social Web",
-// 			time: 32,
-// 			users: 35
-// 		},
-// 		{
-// 			id: 3,
-// 			name: "HCII Lounge",
-// 			time: 7,
-// 			users: 6
-// 		},
-// 		{
-// 			id: 4,
-// 			name: "Bagel Factory",
-// 			time: 8,
-// 			users: 9
-// 		},
-// 		{
-// 			id: 5,
-// 			name: "Orient Express",
-// 			time: 26,
-// 			users: 13
-// 		},
-// 		{
-// 			id: 6,
-// 			name: "300 Craig Street",
-// 			time: 18,
-// 			users: 4
-// 		},
-// 		{
-// 			id: 7,
-// 			name: "Little Asia",
-// 			time: 8,
-// 			users: 9
-// 		},
-// 		{
-// 			id: 8,
-// 			name: "Sabrina's House",
-// 			time: 26,
-// 			users: 13
-// 		},
-// 		{
-// 			id: 9,
-// 			name: "Razzy Fresh",
-// 			time: 18,
-// 			users: 4
-// 		}
-// 	]
-// 	res.send(fake_data);
-// });
-
 router.post('/all', function(req, res) {
 	var app = appExports.app;
 	console.log("req.body: ", req.body);
@@ -85,6 +23,18 @@ router.post('/all', function(req, res) {
 router.get('/room/:id', function(req, res){
 	res.sendFile("/chatroom1.html", {root:'./public/html'});
 })
+
+////////// CHAT ROOM //////////
+
+router.get('/getRoomInfo', function(req, res){
+	var app = appExports.app;
+	console.log("----get room info on data: ", req.query)
+	roomId = req.query.roomId;
+	app.findChatRoom(roomId, function(results){
+		res.send(results)
+	})
+})
+
 
 
 ////////// CREATING NEW CHAT //////////

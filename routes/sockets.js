@@ -7,6 +7,9 @@
 module.exports = function(io) {
 
 	io.on('connection', function (socket) {
+		// socket.on('test', function(data){
+		// 	console.log("TESTER: ", data.message)
+		// })
 		var addedUser = false;
 
 		/*
@@ -27,18 +30,16 @@ module.exports = function(io) {
 			Return - return the userId (from socket.id) to the user
 		*/
 		socket.on('join', function(msg) {
-			socket.username = username;
-			usernames[username] = username;
-			++numUsers;
-			addedUser = true;
-			socket.emit('login', {
-				numUsers: numUsers
+			roomId = msg.roomId;
+
+			// send back to one user what their userId is
+			socket.emit('joined room', {
+				userId: socket.id,
 			});
 
-			// user connecting 
+			// let everyone know that a user has joined
 			socket.broadcast.emit('user joined', {
-				username: socket.username,
-				numUsers: numUsers
+				userId: socket.id
 			});
 		});
 
@@ -47,12 +48,11 @@ module.exports = function(io) {
 			Decrement number of people in a chat
 		*/
 		socket.on('leave', function() {
+
 			if (addedUser) {
-				--numUsers;
 
 				socket.broadcast.emit('user left', {
-					username: socket.username,
-					numUsers: numUsers
+					username: socket.id
 				});
 			}
 		});
